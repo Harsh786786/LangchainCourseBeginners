@@ -1,9 +1,12 @@
+# ///////////////////////////////////////////////////////////////////////
 import os
 import requests  #---> for making http request to an api to get linkdin info 
 from dotenv import load_dotenv
 load_dotenv()
+# /////////////////////////////////////////////////////////////////////////
 
 
+# /////////////////////FUNCTION///////////////////////////////////////////////////
 def scrape_linkdin_profile(linkedin_url:str , mock: bool=True):
 
     if mock:
@@ -22,7 +25,20 @@ def scrape_linkdin_profile(linkedin_url:str , mock: bool=True):
             timeout=10,
         )
     data = response.json()
+    # //////////////// Data cleaning Code /////////////////////
+    data = {
+        k: v
+        for k ,v in data.items()
+        if v not in ([],"","", None) 
+        and k not in ["people_also_viewed", "certifications"]  
+        }
+    if data.get("groups"):
+        for group_dict in data.get("groups"):
+                group_dict.pop("profile_pic_url")
+    # ///////////////////////////////////////////////////////////////
     return data
+# /////////////////////////////////////////////////////////////////////////////////////////
+
 
 if __name__ == "__main__":
      print(
