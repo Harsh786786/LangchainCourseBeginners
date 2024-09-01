@@ -1,5 +1,6 @@
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
+from langchain_ollama import ChatOllama 
 from dotenv import load_dotenv
 from secret_key import OPENAI_API_KEY
 import os
@@ -17,7 +18,9 @@ summary_prompt_tempelate = PromptTemplate(input_variables="information", templat
 # //////////////////////////////////////////////////////////////////////
 
 llm_edit  =  ChatOpenAI(api_key=OPENAI_API_KEY,temperature=0, model_name="gpt-3.5-turbo")
-chain = summary_prompt_tempelate | llm_edit
+llm_olama  =  ChatOllama(model="llama3")
+
+chain = summary_prompt_tempelate | llm_olama
 response = chain.invoke(input={"information":information})
 
 print(response)
