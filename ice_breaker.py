@@ -20,7 +20,7 @@ summary_prompt_tempelate = PromptTemplate(input_variables="information", templat
 llm_edit  =  ChatOpenAI(api_key=OPENAI_API_KEY,temperature=0, model_name="gpt-3.5-turbo")
 llm_olama  =  ChatOllama(model="llama3")
 
-chain = summary_prompt_tempelate | llm_olama
+chain = summary_prompt_tempelate | llm_olama 
 response = chain.invoke(input={"information":information})
 
 print(response)
