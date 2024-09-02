@@ -1,4 +1,6 @@
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) #-- correction for import
 from dotenv import load_dotenv
 load_dotenv()
 from langchain_openai import ChatOpenAI
@@ -9,20 +11,8 @@ from langchain.agents import (
     AgentExecutor,   #----> run ntime of agent 
 )
 from langchain import hub #--> way to download premade prompts
+from ToolsForAgent.toolforagent import get_profile_url_usingTravily
 #------------------------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-#//////////////////// Tool code because can not abel to import tool file /////////////////////////////
-from langchain_community.tools.tavily_search import TavilySearchResults
-# this function we will use in our agent file method 
-def get_profile_url_usingTravily(name:str):
-    search = TavilySearchResults()  #/// this object will run and give result
-    res = search.run(f"{name}")    # /// serch any it will give result as ui me dekha tha na 
-    return res[0]["url"]  #/// row one ka url wala answer do 
-#//////------------------>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-
-
 # /////////////This methdo takes string and return string //////////////////////////////////////////////
 def lookup(name: str) -> str:  
     llm = ChatOpenAI(
@@ -68,5 +58,5 @@ def lookup(name: str) -> str:
 #////////////////////////////////////////////----------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 if __name__ == "__main__":
-    linkedin_url = lookup(name="Harsh Verma virtusa")
+    linkedin_url = lookup(name="Harsh Verma LPU")
     print(linkedin_url)

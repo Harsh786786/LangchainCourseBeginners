@@ -1,10 +1,14 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# ////////////////////////////////////////////////////
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_ollama import ChatOllama
 from langchain.chains import LLMChain
 from dotenv import load_dotenv
 from third_parties.linkedin import scrape_linkdin_profile
-import os
+
 import streamlit as st
 
 load_dotenv()
