@@ -11,7 +11,7 @@ load_dotenv()
 summary_temp =  """  give the Linkedin  information  {information} about a person
  from i want to create 
  1. a short summary
- 2. two intreasting facts about them"""
+ """
 
 summary_prompt_tempelate = PromptTemplate(input_variables="information", template=summary_temp)
 # --------------------------------------------------------------->>>>>>>>>>>>>>>>

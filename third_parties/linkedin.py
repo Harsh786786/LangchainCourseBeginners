@@ -40,10 +40,5 @@ def scrape_linkdin_profile(linkedin_url:str , mock: bool=True):
 # /////////////////////////////////////////////////////////////////////////////////////////
 
 
-if __name__ == "__main__":
-     print(
-          scrape_linkdin_profile(
-               linkedin_url= "https://www.linkedin.com/in/harshverma0/"
-          )
-     )
+
     
